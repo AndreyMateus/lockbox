@@ -2,11 +2,9 @@
 
 Sistema web de gerenciamento de anotações desenvolvido em PHP, com autenticação de usuários, organização de notas, controle de perfil e registro de auditoria.
 
-O projeto foi desenvolvido com foco em estudo e aplicação prática de conceitos de desenvolvimento web, arquitetura de software e organização de código em PHP.
-
 **OBS:** O PROJETO ESTÁ TENDO O SISTEMA DE AUDITORIA ADICIONADO NESSE EXATO MOMENTO 17/09/2026, MAS O DASHBOARD JÁ ESTÁ LÁ, ALGUNS BUGS TAMBÉM ESTÃO SENDO CORRIGIDOS, ENTÃO VOCÊ PODE ACABAR VENDO ALGUMA(s) **TODO(s):** deixadas por mim, mas serão removidas nos próximos dias. (estou trabalhando neste projeto), perdoe também os arquivos de imagens baixados, serão removidos também.
 
-## Sumário
+## Sumário do README.md
 
 ```
 README
@@ -23,6 +21,8 @@ README
 │   └── Views
 ├── Logs e Auditoria
 ├── Segurança
+|── Conceitos aplicados
+|── Decisões de arquitetura
 └── Melhorias futuras
 ```
 
@@ -48,13 +48,11 @@ README
 
 * PHP
 * MySQL
-* PDO
 * HTML5
 * CSS3
 * Tailwind CSS
 * DaisyUI
 * JavaScript
-* Composer
 * Git
 
 ## Como rodar
@@ -94,11 +92,11 @@ Você pode usar qualquer uma das opções abaixo:
 3. Inicie o servidor (Apache)
 4. Abra o navegador e acesse o seu localhost ou endereço definido pelo AMBIENTE (software que simula o servidor, Ex: xampp, Laravel herd, etc...)
 
-Configure as credenciais do banco de dados no arquivo de configuração da aplicação.
+Configure as credenciais do banco de dados no arquivo de configuração da aplicação em `Core/Config/config.php`.
 
-Crie o banco de dados e execute o script SQL disponível no projeto para criar as tabelas necessárias.
+Crie o banco de dados e execute o script SQL disponível no projeto para criar as tabelas necessárias em `App/Database/database.sql`.
 
-Configure o servidor web para utilizar a pasta `Public/` como diretório público da aplicação.
+Configure o servidor web para utilizar a pasta `Public/` como diretório público da aplicação. **(OPCIONAL)**
 
 Após a configuração, acesse o projeto através do servidor local.
 
@@ -135,7 +133,6 @@ Uma nota também pode possuir diversos registros de auditoria.
 ```text
 User
  ├── 1:N → Notes
- └── 1:N → user Logs
 ```
 
 ## Arquitetura
@@ -229,12 +226,12 @@ O projeto utiliza algumas práticas para reduzir riscos comuns em aplicações w
 
 * Prepared Statements através do PDO
 * Validação dos dados recebidos
+* Validação do MIMETYPE dos arquivos recebidos (Validação de uploads)
 * Sanitização da saída utilizando `htmlspecialchars()`
 * Controle de sessão
 * Controle de acesso às áreas autenticadas
 * Proteção de informações sensíveis
 * Separação entre arquivos públicos e código interno
-* Validação de uploads
 * Senhas armazenadas utilizando hashing
 * Regenerate ID para SESSION
 
@@ -273,6 +270,8 @@ Router
    ↓
 Controller
    ↓
+ Model
+   ↓
 Database
 ```
 
@@ -285,7 +284,7 @@ Database
    ↓
 Controller
    ↓
-View
+ View
    ↓
 Response
 ```
@@ -306,3 +305,4 @@ Algumas funcionalidades consideradas para versões futuras:
 * Adição de Camadas como Services e Repositories
 * Melhoria na UI Mobile
 * Sistema de Role/Cargo, onde o ADMIN terá acesso a todas as notas de todos os usuários
+* Adição de uma LLM via API para gerar resumos e INSIGHTS
