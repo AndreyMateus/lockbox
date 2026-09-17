@@ -186,6 +186,8 @@ Eles são responsáveis por coordenar o fluxo da requisição, utilizando as dem
 
 A intenção é evitar que o controller concentre diretamente regras de negócio ou consultas ao banco.
 
+**OBS:** alguns controllers com bastante verbosidade de código estão utilizando o padrão de projeto **SINGLE ACTION CONTROLLER**
+
 ### Models
 
 Os models representam as entidades e os dados utilizados pela aplicação.
