@@ -2,6 +2,7 @@
 
 use App\Models\UserModel;
 use Core\Helpers\Request;
+use Core\Helpers\Session;
 
 /**
  * Dump and die
@@ -28,7 +29,7 @@ function dd(mixed ...$data): void
  */
 function base_path(string $path = ''): string
 {
-    // TODO: analisar pq esse codigo CRASHOU na HOSTINGER
+    // TODO: analisar CRASH na HOSTINGER(SERVER)
     // \\ -> windows
 
     return convert_separator_of_path(__DIR__ . "\\..\\..\\" . $path);
@@ -164,4 +165,25 @@ function getProfileImg(string $fullPathImg): string
 {
     // OBS: HERE is the PUBLIC PATH of IMG
     return "/uploads/profile_images/" . basename($fullPathImg);
+}
+
+function session()
+{
+    return  $session = new Session();
+}
+
+/**
+ * Write the errors in file log of server
+ * @param array $errors
+ * @return void
+ * @example array['title'] = title of error
+ * @example array['msg'] = description/stacktrace of error
+ */
+function writeInFileLog(array $errors)
+{
+    $titleError = $errors['title'] . "\n\n" ?? '';
+    $msgError = $errors['msg'] ?? '';
+    $fileLogPath = convert_separator_of_path(base_path("App/logs/server_log.txt"));
+
+    file_put_contents($fileLogPath, $titleError . $msgError, FILE_APPEND);
 }
