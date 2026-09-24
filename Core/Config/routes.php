@@ -16,6 +16,7 @@ use App\Controllers\DashboardController;
 use App\Controllers\Notes;
 use App\Controllers\ProfileController;
 use App\Controllers\InfoController;
+use App\Controllers\Notes\ShowController;
 
 $route = new Route();
 
@@ -73,6 +74,18 @@ $route->get('/notes', [
 $route->delete("/notes", [
     'class' => Notes\DeleteController::class,
     'method' => '__invoke',
+    'middleware' => fn() => AuthMiddleware::handle()
+]);
+
+$route->get('/notes/unlock', [
+    'class' => ShowController::class,
+    'method' => 'unlock',
+    'middleware' => fn() => AuthMiddleware::handle()
+]);
+
+$route->get('/notes/lock', [
+    'class' => ShowController::class,
+    'method' => 'lock',
     'middleware' => fn() => AuthMiddleware::handle()
 ]);
 
