@@ -11,8 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
 </head>
 
-<body class="flex">
+<body class="flex flex-col sm:flex-col md:flex-col lg:flex-row h-screen overflow-auto">
     <?php include($viewName); ?>
 </body>
-
-</html>
