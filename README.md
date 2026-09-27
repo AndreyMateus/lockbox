@@ -2,7 +2,7 @@
 
 Sistema web de gerenciamento de anotações desenvolvido em PHP, com autenticação de usuários, organização de notas, controle de perfil e registro de auditoria.
 
-**OBS:** O PROJETO ESTÁ TENDO O SISTEMA DE AUDITORIA ADICIONADO NESSE EXATO MOMENTO 17/09/2026, MAS O DASHBOARD JÁ ESTÁ LÁ, ALGUNS BUGS TAMBÉM ESTÃO SENDO CORRIGIDOS, ENTÃO VOCÊ PODE ACABAR VENDO ALGUMA(s) **TODO(s):** deixadas por mim, mas serão removidas nos próximos dias. (estou trabalhando neste projeto), perdoe também os arquivos de imagens baixados, serão removidos também.
+**OBS:** Partes do sistema estão em manutenção.
 
 ## Sumário do README.md
 
