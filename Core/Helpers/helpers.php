@@ -169,7 +169,7 @@ function getProfileImg(string $fullPathImg): string
 
 function session()
 {
-    return  $session = new Session();
+    return  new Session();
 }
 
 /**
@@ -186,4 +186,15 @@ function writeInFileLog(array $errors)
     $fileLogPath = convert_separator_of_path(base_path("App/logs/server_log.txt"));
 
     file_put_contents($fileLogPath, $titleError . $msgError, FILE_APPEND);
+}
+
+/**
+ * Get the file .env how association array
+ * @return array|bool
+ */
+function env(): array | bool
+{
+    $fileName = ".env";
+    $envArr = parse_ini_file(convert_separator_of_path(base_path() . $fileName));
+    return $envArr;
 }
