@@ -1,0 +1,20 @@
+{
+    "name": "andre/lockbox",
+    "authors": [
+        {
+            "name": "Andrey Mateus"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "App\\": "App/"
+        },
+        "files": [
+            "./Core/Helpers/helpers.php"
+        ]
+    },
+    "require-dev": {
+        "laravel/pint": "^1.32"
+    }
+}
