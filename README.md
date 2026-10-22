@@ -1,8 +1,10 @@
 # Lockbox Notes
 
-Sistema web de gerenciamento de anotações desenvolvido em PHP, com autenticação de usuários, organização de notas, controle de perfil e registro de auditoria.
+Sistema web de gerenciamento de anotações desenvolvido em PHP puro com foco em segurança e criptografia, com autenticação de usuários, organização de notas, controle de perfil e registro de auditoria.
 
-**OBS:** Partes do sistema estão em manutenção.
+**OBS:** Partes do sistema estão em manutenção/adição.
+
+**VOCÊ PROVAVELMENTE VAI ENCONTRAR ALGUMAS "TODOS", estão sendo feitas em meu tempo livre.**
 
 ## Sumário do README.md
 
@@ -38,8 +40,8 @@ README
 * Exclusão de notas
 * Visualização de notas
 * Pesquisa e filtragem
-* Paginação
-* Registro de ações através de logs e auditoria
+<!-- * Paginação -->
+* Registro de ações através de logs e auditoria (Em manutenção)
 * Dashboard com informações da aplicação
 * Interface responsiva
 * Tema escuro
@@ -48,12 +50,14 @@ README
 
 * PHP
 * MySQL
+* SQL
 * HTML5
 * CSS3
 * Tailwind CSS
 * DaisyUI
 * JavaScript
 * Git
+* MVC
 
 ## Como rodar
 
@@ -106,34 +110,16 @@ A aplicação utiliza um banco de dados relacional para armazenar usuários, not
 
 Principais entidades:
 
-```text
- ── users
- ── notes
-
-(Futuramente as tabelas de LOG serão unificadas em só uma tabela de logs, assim facilitando o escalonamento)
- ── users_log
- ── notes_log
-
-```
-
 A tabela `users` armazena os dados dos usuários.
 
 A tabela `notes` armazena as anotações associadas aos usuários.
 
+(Em implementação)
 As tabelas de auditoria registra eventos relevantes realizados na aplicação, permitindo rastrear determinadas operações, sendo um dos pilares da segurança da informação, conhecido como: **NÃO REPUDIO**.
 
 ### Relacionamentos
 
-Um usuário pode possuir várias notas.
-
-Um usuário também pode possuir diversos registros de auditoria.
-
-Uma nota também pode possuir diversos registros de auditoria.
-
-```text
-User
- ├── 1:N → Notes
-```
+![alt](./diagrams/MER.png)
 
 ## Arquitetura
 
@@ -173,6 +159,7 @@ Notes/
 │   └── index.php
 │
 ├── .gitignore
+├── .env
 └── README.md
 ```
 
@@ -200,18 +187,6 @@ As views são responsáveis pela apresentação dos dados ao usuário.
 
 A camada de apresentação é mantida separada da lógica responsável pelo processamento das requisições e pelas regras da aplicação.
 
-<!-- ### Services
-
-Os services concentram regras de negócio que não precisam ficar diretamente nos controllers.
-
-Isso permite manter os controllers menores e separar melhor as responsabilidades da aplicação. -->
-
-<!-- ### Repositories
-
-Os repositories concentram operações relacionadas ao acesso aos dados.
-
-Essa separação evita que controllers e outras partes da aplicação precisem lidar diretamente com detalhes das consultas ao banco de dados. -->
-
 ## Logs e Auditoria (Em implementação)
 
 O sistema possui mecanismos de registro para acompanhar determinadas ações realizadas na aplicação.
@@ -235,7 +210,6 @@ O projeto utiliza algumas práticas para reduzir riscos comuns em aplicações w
 * Proteção de informações sensíveis
 * Separação entre arquivos públicos e código interno
 * Senhas armazenadas utilizando hashing
-* Regenerate ID para SESSION
 
 Informações sensíveis de configuração não devem ser versionadas no Git.
 
@@ -252,6 +226,7 @@ Durante o desenvolvimento foram aplicados conceitos como:
 * Prepared Statements
 * Sessões
 * Hash de senhas
+* Criptografia com chave simétrica - (AES-256-CBC)
 * Validação de dados
 * Sanitização de saída
 * Separação de responsabilidades
@@ -295,16 +270,60 @@ Essa organização facilita a manutenção e permite alterar uma parte da aplica
 
 ## Melhorias futuras
 
-Algumas funcionalidades consideradas para versões futuras:
+Algumas funcionalidades consideradas para atualizações futuras:
 
 * Recuperação de senha por e-mail
-* Editor Markdown
+* Após desbloquear o cadeado, ser redirecionado para a página onde o cadeado foi acionado
 * Anexos nas notas (files)
-* Melhorias no sistema de auditoria (Em Manutenção)
-* Maior cobertura de validações
-* Melhorias de acessibilidade
+* Melhoria na UI Mobile
+* Melhorias de acessibilidade - front-end mobile
 * Refatoração do código
 * Adição de Camadas como Services e Repositories
-* Melhoria na UI Mobile
 * Sistema de Role/Cargo, onde o ADMIN terá acesso a todas as notas de todos os usuários
+* cada usuário terá sua própria chave simétrica individual salva com seu perfil no banco.
+* Maior cobertura de validações
+* Melhorias no sistema de auditoria (Em Manutenção)
 * Adição de uma LLM via API para gerar resumos e INSIGHTS
+* Regenerate ID para SESSION a cada vez que fizer login
+* validação para senha do cadeado ser obrigatoriamente diferente da senha de lohin
+
+## Telas
+
+### Index
+
+![alt](./readme_imgs/index.png)
+
+### Login
+
+![alt](./readme_imgs/login.png)
+
+### Register
+
+![alt](./readme_imgs/register.png)
+
+### Profile
+
+![alt](./readme_imgs/profile.png)
+
+### Create Note
+
+![alt](./readme_imgs/create.png)
+
+### Alter Note
+<!-- ![alt](./readme_imgs/) -->
+
+### Dashboard
+
+![alt](./readme_imgs/dashboard.png)
+
+### List Notes
+
+![alt](./readme_imgs/list.png)
+
+### List Notes LOCKED
+
+![alt](./readme_imgs/list_locked.png)
+
+### Padlock
+
+![alt](./readme_imgs/padlock.png)
